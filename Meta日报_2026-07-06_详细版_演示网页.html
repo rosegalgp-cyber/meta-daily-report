@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta日报（2026-07-06，详细版）</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-2: #0b1830;
+      --panel: rgba(12, 24, 48, 0.82);
+      --panel-2: rgba(18, 33, 66, 0.9);
+      --line: rgba(104, 178, 255, 0.18);
+      --text: #eaf2ff;
+      --muted: #9eb4d4;
+      --blue: #48b4ff;
+      --cyan: #30e0ff;
+      --green: #49f2b0;
+      --purple: #9a7cff;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(48,224,255,.12), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(154,124,255,.16), transparent 24%),
+        radial-gradient(circle at 80% 80%, rgba(73,242,176,.10), transparent 26%),
+        linear-gradient(180deg, #06101d 0%, #081528 35%, #07111f 100%);
+      min-height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(72,180,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(72,180,255,.03) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.6), transparent 90%);
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(6, 12, 24, 0.72);
+      border-bottom: 1px solid rgba(120, 180, 255, 0.12);
+    }
+    .topbar-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(72,180,255,.9), rgba(154,124,255,.9));
+      box-shadow: 0 8px 24px rgba(72,180,255,.28);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: white;
+      letter-spacing: .04em;
+    }
+    .brand-text h1 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: .01em;
+    }
+    .brand-text p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      transition: all .22s ease;
+    }
+    .nav a:hover {
+      color: white;
+      border-color: rgba(72,180,255,.4);
+      background: rgba(72,180,255,.12);
+      transform: translateY(-1px);
+    }
+    .hero {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 28px 24px 18px;
+    }
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      padding: 28px 30px;
+      border-radius: calc(var(--radius) + 4px);
+      background: linear-gradient(135deg, rgba(12,22,44,.92), rgba(10,20,38,.84));
+      border: 1px solid rgba(102, 180, 255, 0.16);
+      box-shadow: var(--shadow);
+      animation: floatIn .6s ease-out both;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -80px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(48,224,255,.18), transparent 65%);
+      pointer-events: none;
+    }
+    .hero-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(72,180,255,.25);
+      color: #b6d5ff;
+      background: rgba(72,180,255,.08);
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+    .hero h2 {
+      margin: 0 0 10px;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: .01em;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 860px;
+      line-height: 1.75;
+    }
+    .wrap {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 24px 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .module-card {
+      grid-column: span 12;
+      background: linear-gradient(180deg, rgba(14,24,46,.88), rgba(10,18,35,.9));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: floatIn .7s ease-out both;
+    }
+    .module-header {
+      padding: 18px 22px;
+      border-bottom: 1px solid rgba(120,180,255,.12);
+      background: linear-gradient(90deg, rgba(72,180,255,.08), rgba(154,124,255,.05));
+    }
+    .module-header h2 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.25;
+      letter-spacing: .01em;
+    }
+    .module-content {
+      padding: 22px;
+    }
+    .module-content h3 {
+      margin: 22px 0 12px;
+      font-size: 16px;
+      color: #d9e9ff;
+    }
+    .module-content h3:first-child { margin-top: 0; }
+    .module-content p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 10px 0;
+    }
+    .module-content strong, .module-content b { color: #ffffff; }
+    .module-content ul, .module-content ol {
+      margin: 10px 0 0 20px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .module-content li + li { margin-top: 10px; }
+    .module-content a { color: var(--cyan); text-decoration: none; }
+    .module-content a:hover { text-decoration: underline; }
+    .module-content img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 18px;
+      border: 1px solid rgba(120,180,255,.15);
+      background: rgba(255,255,255,.02);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      margin: 14px 0 18px;
+    }
+    .module-content table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(120,180,255,.14);
+      margin: 12px 0 16px;
+    }
+    .module-content th {
+      background: rgba(72,180,255,.12);
+      color: #eaf4ff;
+      font-weight: 700;
+      font-size: 13px;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(120,180,255,.15);
+    }
+    .module-content td {
+      color: #d8e7ff;
+      font-size: 13px;
+      padding: 11px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      vertical-align: top;
+    }
+    .module-content tr:hover td { background: rgba(72,180,255,.04); }
+    .module-content hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(120,180,255,.22), transparent);
+      margin: 24px 0;
+    }
+    .module-content code {
+      background: rgba(255,255,255,.06);
+      padding: 2px 6px;
+      border-radius: 8px;
+      color: #dff7ff;
+    }
+    .kpi-list { counter-reset: kpi; padding-left: 0; margin-left: 0; }
+    .kpi-list > li {
+      list-style: none;
+      position: relative;
+      margin: 0 0 14px;
+      padding: 16px 18px 16px 56px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border: 1px solid rgba(120,180,255,.1);
+      color: #d8e7ff;
+      line-height: 1.75;
+    }
+    .kpi-list > li::before {
+      counter-increment: kpi;
+      content: counter(kpi);
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 8px 18px rgba(72,180,255,.28);
+    }
+    .news-list li {
+      margin-bottom: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(120,180,255,.1);
+    }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 960px) {
+      .topbar-inner { flex-direction: column; align-items: flex-start; }
+      .nav { justify-content: flex-start; }
+      .hero h2 { font-size: 28px; }
+      .module-content { padding: 18px; }
+      .module-content table { display: block; overflow-x: auto; white-space: nowrap; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-badge">MR</div>
+        <div class="brand-text">
+          <h1>Meta日报（2026-07-06，详细版）</h1>
+          <p>深色科技感 · 卡片式布局 · 顶部导航 · 模块化内容区</p>
+        </div>
+      </div>
+      <nav class="nav"><a href="#sec-1">一、核心结论</a><a href="#sec-2">二、Total 总览</a><a href="#sec-3">三、预算结构</a><a href="#sec-4">四、拉新分析</a><a href="#sec-5">五、再营销分析</a><a href="#sec-6">六、版位分析（Top10）</a><a href="#sec-7">七、国家分析</a><a href="#sec-8">八、近期行业资讯</a></nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-card">
+      <div class="hero-meta">DHwork · HTML 演示页</div>
+      <h2>Meta日报（2026-07-06，详细版）</h2>
+      <p>本页根据当前飞书日报自动生成，整体采用深色科技风、卡片化分区与轻微动效展示，适合像 PPT 一样演示与汇报。</p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <div class="grid">
+      <section class="module-card" id="sec-1">
+      <div class="module-header">
+        <h2>一、核心结论</h2>
+      </div>
+      <div class="module-content"><ol class="kpi-list">
+<li><strong>流量成本回落但效率未同步修复</strong>：前端总消耗 <strong>65,339.11 USD</strong>，较昨日 <strong>-4.26%</strong>，较过去7天均值 <strong>17.31%</strong>；CPC <strong>0.12</strong>、CPM <strong>7.53</strong> 分别较昨日 <strong>3.20%</strong>、<strong>-2.72%</strong>，CTR <strong>6.12%</strong> 较昨日 <strong>-5.74%</strong>。其中 <strong>动态</strong> 版位消耗 <strong>36,139.21</strong>、占比 <strong>55.31%</strong>，FB ROI <strong>4.24</strong>，是当前成本侧主要观察对象。</li>
+<li><strong>ROI修复但仍低于近7日常态</strong>：当日 <strong>BO ROI = 6.84</strong>，较昨日 <strong>21.33%</strong>，较过去7天均值 <strong>-7.95%</strong>；GMV <strong>446,790.39</strong>，较昨日 <strong>16.16%</strong>。再营销回收仍主要来自 <strong>RMKT-IOS</strong>（GMV <strong>349,648.58</strong>，ROI <strong>16.24</strong>），明显高于 <strong>RMKT-Android</strong>（GMV <strong>96,972.60</strong>，ROI <strong>7.42</strong>）。</li>
+<li><strong>预算结构现状</strong>：<strong>RMKT 消耗占比 52.96%，NEW 消耗占比 40.88%</strong>；设备侧 <strong>IOS 占比 59.64%、Android 占比 34.20%</strong>。</li>
+<li><strong>头部国家趋势</strong>：US 仍是量级核心，<strong>NEW-IOS US</strong> NB <strong>55</strong>、CPB <strong>130.96</strong>，<strong>RMKT-IOS US</strong> GMV <strong>198,972.19</strong>，较昨日 <strong>+29.12%；UK 仍是效率更稳的头部国家，NEW-Android UK</strong> NB <strong>35</strong>、CPB <strong>71.29</strong>，<strong>RMKT-IOS UK</strong> ROI <strong>18.42</strong>。</li>
+<li><strong>潜力与警示</strong>：潜力国家看 <strong>FR / ES</strong>，其中 <strong>NEW-Android FR</strong> NB <strong>13</strong>、CPB <strong>65.66</strong>，<strong>RMKT-Android ES</strong> ROI <strong>8.97</strong>、GMV 较昨日 <strong>+8.28%</strong>；警示国家看 <strong>CA / IT</strong> 的 iOS 拉新，CA CPB <strong>411.58</strong>、NB <strong>2</strong>，IT CPB <strong>311.46</strong>、NB <strong>3</strong>，成本与产出不匹配。</li>
+</ol></div>
+    </section><section class="module-card" id="sec-2">
+      <div class="module-header">
+        <h2>二、Total 总览</h2>
+      </div>
+      <div class="module-content"><p><img src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MzZhMjc4OWI0ZjAzMzM2MTQ2OTk2ZGNhMzAzNGRjYTJfN2E2NWRlOTIzNzlhMWIwY2E3NmU1MDAxNzI5Mzk4OTZfSUQ6NzY1OTc1ODg4NTM5MzQ4NDczMF8xNzgzNDgwMDY1OjE3ODM0ODM2NjVfVjM" alt="" /></p>
+<p><img src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=Y2NhNDllYzdjNTk3ZGE0ZmIzMmY4NGVkZWNiODAwNjFfMDc4NDY0MjE0NzU3NDgzNzhkMjEzMmExOWJiZWEwMDlfSUQ6NzY1OTc1ODg2NTY1OTI1MTY3NF8xNzgzNDgwMDY1OjE3ODM0ODM2NjVfVjM" alt="" /></p>
+<p><strong>前端投放总览</strong></p>
+<table class="data-table total-table">
+<thead>
+<tr>
+  <th>指标</th>
+  <th>当日</th>
+  <th>较昨日</th>
+  <th>较过去7天均值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>花费(USD)</td>
+  <td>65,339.11</td>
+  <td>-4.26%</td>
+  <td>17.31%</td>
+</tr>
+<tr>
+  <td>CTR</td>
+  <td>6.12%</td>
+  <td>-5.74%</td>
+  <td>-7.63%</td>
+</tr>
+<tr>
+  <td>CPC</td>
+  <td>0.12</td>
+  <td>3.20%</td>
+  <td>11.48%</td>
+</tr>
+<tr>
+  <td>CPM</td>
+  <td>7.53</td>
+  <td>-2.72%</td>
+  <td>3.01%</td>
+</tr>
+<tr>
+  <td>应用安装</td>
+  <td>15,047.00</td>
+  <td>-8.48%</td>
+  <td>13.00%</td>
+</tr>
+<tr>
+  <td>购物转化价值</td>
+  <td>353,806.99</td>
+  <td>8.32%</td>
+  <td>4.08%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>后端业务总览</strong></p>
+<table class="data-table total-table">
+<thead>
+<tr>
+  <th>指标</th>
+  <th>当日</th>
+  <th>较昨日</th>
+  <th>较过去7天均值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>UV</td>
+  <td>325,663.00</td>
+  <td>0.93%</td>
+  <td>5.87%</td>
+</tr>
+<tr>
+  <td>RB</td>
+  <td>6,521.00</td>
+  <td>-7.83%</td>
+  <td>12.99%</td>
+</tr>
+<tr>
+  <td>NB</td>
+  <td>249.00</td>
+  <td>15.28%</td>
+  <td>22.57%</td>
+</tr>
+<tr>
+  <td>NB_Order</td>
+  <td>420.00</td>
+  <td>23.53%</td>
+  <td>19.27%</td>
+</tr>
+<tr>
+  <td>NB_GMV</td>
+  <td>20,413.07</td>
+  <td>35.10%</td>
+  <td>23.89%</td>
+</tr>
+<tr>
+  <td>AB</td>
+  <td>5,327.00</td>
+  <td>13.65%</td>
+  <td>9.70%</td>
+</tr>
+<tr>
+  <td>Order</td>
+  <td>9,151.00</td>
+  <td>11.98%</td>
+  <td>9.25%</td>
+</tr>
+<tr>
+  <td>GMV</td>
+  <td>446,790.39</td>
+  <td>16.16%</td>
+  <td>7.98%</td>
+</tr>
+<tr>
+  <td>BO ROI</td>
+  <td>6.84</td>
+  <td>21.33%</td>
+  <td>-7.95%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>分析：</strong></p>
+<ul>
+<li>当日总消耗 <strong>65,339.11 USD</strong>，GMV <strong>446,790.39</strong>，BO ROI <strong>6.84</strong>。</li>
+<li>与昨日相比，消耗 <strong>-4.26%</strong>，但 GMV <strong>16.16%</strong>，带动 BO ROI <strong>21.33%</strong>。</li>
+<li>与过去7天均值相比，消耗 <strong>17.31%</strong>，BO ROI <strong>-7.95%</strong>，需重点关注高成本流量的转化承接效率。</li>
+</ul></div>
+    </section><section class="module-card" id="sec-3">
+      <div class="module-header">
+        <h2>三、预算结构</h2>
+      </div>
+      <div class="module-content"><p><img src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YmM4ZmQ0YjJkOTA4NmRhNmI1ODFlZjg5NzM2MzJmYzlfMDlmZGJjNThhMmEwMjZiYTJmYTFhMDdiZGY4YTNhMGJfSUQ6NzY1OTc1NTMzNjMyODM1MDY0OV8xNzgzNDgwMDY1OjE3ODM0ODM2NjVfVjM" alt="" /></p>
+<table class="data-table budget-table">
+<thead>
+<tr>
+  <th>分类</th>
+  <th>IOS_消耗</th>
+  <th>IOS_占总消耗</th>
+  <th>Android_消耗</th>
+  <th>Android_占总消耗</th>
+  <th>合计消耗</th>
+  <th>合计占总消耗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>NEW</td>
+  <td>17,432.70</td>
+  <td>26.68%</td>
+  <td>9,277.41</td>
+  <td>14.20%</td>
+  <td>26,710.11</td>
+  <td>40.88%</td>
+</tr>
+<tr>
+  <td>RMKT</td>
+  <td>21,535.25</td>
+  <td>32.96%</td>
+  <td>13,068.59</td>
+  <td>20.00%</td>
+  <td>34,603.84</td>
+  <td>52.96%</td>
+</tr>
+<tr>
+  <td>设备合计</td>
+  <td>38,967.95</td>
+  <td>59.64%</td>
+  <td>22,346.00</td>
+  <td>34.20%</td>
+  <td>61,313.95</td>
+  <td>93.84%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>分析：</strong></p>
+<ul>
+<li>当前预算结构上，RMKT 仍占主导（<strong>52.96%），IOS 仍是主要消耗终端（59.64%</strong>）。</li>
+<li>本节仅陈述结构现状，后续效率判断以拉新/再营销模块分别展开。</li>
+</ul></div>
+    </section><section class="module-card" id="sec-4">
+      <div class="module-header">
+        <h2>四、拉新分析</h2>
+      </div>
+      <div class="module-content"><p><img src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTBmYjQ3YzQwMzNhN2I5MTJmMDQ0NDc1ZDg1ZDUyNDVfZGJiMWZiZWUxMGE0ZTc4OTAyMWMwNWYyNzU2NmM4ZWRfSUQ6NzY1OTc1ODkwNTE0MTY2MDY0N18xNzgzNDgwMDY1OjE3ODM0ODM2NjVfVjM" alt="" /></p>
+<table class="data-table insight-table">
+<thead>
+<tr>
+  <th>场景</th>
+  <th>消耗</th>
+  <th>消耗占比</th>
+  <th>RB</th>
+  <th>NB</th>
+  <th>CPB</th>
+  <th>NB_Order</th>
+  <th>NB_GMV</th>
+  <th>消耗较昨日</th>
+  <th>消耗较7日均值</th>
+  <th>NB较昨日</th>
+  <th>NB较7日均值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>NEW-IOS</td>
+  <td>17,432.70</td>
+  <td>26.68%</td>
+  <td>2,298</td>
+  <td>123</td>
+  <td>141.73</td>
+  <td>231</td>
+  <td>10,921.19</td>
+  <td>-4.45%</td>
+  <td>20.32%</td>
+  <td>6.96%</td>
+  <td>7.22%</td>
+</tr>
+<tr>
+  <td>NEW-Android</td>
+  <td>9,277.41</td>
+  <td>14.20%</td>
+  <td>4,203</td>
+  <td>121</td>
+  <td>76.67</td>
+  <td>184</td>
+  <td>9,176.29</td>
+  <td>-11.48%</td>
+  <td>8.99%</td>
+  <td>27.37%</td>
+  <td>46.03%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>分析：</strong></p>
+<ul>
+<li>NEW-IOS：NB <strong>123</strong>，CPB <strong>141.73</strong>，消耗较昨日 <strong>-4.45%</strong>。</li>
+<li>NEW-Android：NB <strong>121</strong>，CPB <strong>76.67</strong>，消耗较昨日 <strong>-11.48%</strong>。</li>
+<li><strong>广告优化建议</strong>：Android 端拉新成本效率更优，适合优先观察放量空间；IOS 端需重点控制高成本流量，避免 CPB 抬升快于 NB_GMV 改善。</li>
+<li><strong>运营建议</strong>：围绕拉新贡献较高国家与设备，强化新人首单权益、转化落地页与新客承接资源，提升 NB 向 NB_Order / NB_GMV 的转化深度。</li>
+</ul></div>
+    </section><section class="module-card" id="sec-5">
+      <div class="module-header">
+        <h2>五、再营销分析</h2>
+      </div>
+      <div class="module-content"><p><img src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YjJjY2QyMTE5OWE2ZWY1MjAxMGExYjRiOGYzZmM3NDRfNTgyYWQwZjFlYjViMDRmOGQxODQ4ZGU4MDMwZTc3Y2RfSUQ6NzY1OTc1ODkyMzM2ODYzMTI0OF8xNzgzNDgwMDY1OjE3ODM0ODM2NjVfVjM" alt="" /></p>
+<table class="data-table insight-table">
+<thead>
+<tr>
+  <th>场景</th>
+  <th>消耗</th>
+  <th>消耗占比</th>
+  <th>AB</th>
+  <th>Order</th>
+  <th>GMV</th>
+  <th>ROI</th>
+  <th>AOV</th>
+  <th>消耗较昨日</th>
+  <th>消耗较7日均值</th>
+  <th>GMV较昨日</th>
+  <th>GMV较7日均值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>RMKT-IOS</td>
+  <td>21,535.25</td>
+  <td>32.96%</td>
+  <td>4,026</td>
+  <td>7,033</td>
+  <td>349,648.58</td>
+  <td>16.24</td>
+  <td>49.72</td>
+  <td>-0.62%</td>
+  <td>20.92%</td>
+  <td>20.45%</td>
+  <td>10.10%</td>
+</tr>
+<tr>
+  <td>RMKT-Android</td>
+  <td>13,068.59</td>
+  <td>20.00%</td>
+  <td>1,382</td>
+  <td>2,113</td>
+  <td>96,972.60</td>
+  <td>7.42</td>
+  <td>45.89</td>
+  <td>-3.83%</td>
+  <td>17.49%</td>
+  <td>2.94%</td>
+  <td>0.97%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>分析：</strong></p>
+<ul>
+<li>RMKT-IOS：GMV <strong>349,648.58</strong>，ROI <strong>16.24</strong>，较昨日 GMV <strong>20.45%</strong>。</li>
+<li>RMKT-Android：GMV <strong>96,972.60</strong>，ROI <strong>7.42</strong>，较昨日 GMV <strong>2.94%</strong>。</li>
+<li><strong>广告优化建议</strong>：再营销端仍应以高 ROI 的 IOS 流量为核心回收阵地，同时对 Android 端继续优化素材/受众组合，提升回收效率。</li>
+<li><strong>运营建议</strong>：围绕高 GMV 国家和终端，优先保障活动货盘、复购激励与转化页承接效率。</li>
+</ul></div>
+    </section><section class="module-card" id="sec-6">
+      <div class="module-header">
+        <h2>六、版位分析（Top10）</h2>
+      </div>
+      <div class="module-content"><p><img src="https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDA1NzBlYTVlNWZhZDljOThmMGVlZjI2MDY1YTI3ZmJfYzE5ZGI0NWUwMzY0ZTdkNTUzM2I2MGVhMWNiM2QzMjBfSUQ6NzY1OTc1NTM5MDg5MjM3OTExN18xNzgzNDgwMDY1OjE3ODM0ODM2NjVfVjM" alt="" /></p>
+<table class="data-table placement-table">
+<thead>
+<tr>
+  <th>版位</th>
+  <th>消耗</th>
+  <th>消耗占比</th>
+  <th>CTR</th>
+  <th>CPC</th>
+  <th>CPM</th>
+  <th>购物转化价值</th>
+  <th>FB ROI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>动态</td>
+  <td>36,139.21</td>
+  <td>55.31%</td>
+  <td>6.40%</td>
+  <td>0.14</td>
+  <td>9.16</td>
+  <td>153,147.51</td>
+  <td>4.24</td>
+</tr>
+<tr>
+  <td>Instagram 快拍</td>
+  <td>11,553.19</td>
+  <td>17.68%</td>
+  <td>5.93%</td>
+  <td>0.18</td>
+  <td>10.89</td>
+  <td>111,707.43</td>
+  <td>9.67</td>
+</tr>
+<tr>
+  <td>Facebook Reels</td>
+  <td>5,675.77</td>
+  <td>8.69%</td>
+  <td>8.11%</td>
+  <td>0.06</td>
+  <td>5.08</td>
+  <td>23,668.04</td>
+  <td>4.17</td>
+</tr>
+<tr>
+  <td>Instagram Reels</td>
+  <td>2,670.89</td>
+  <td>4.09%</td>
+  <td>7.34%</td>
+  <td>0.14</td>
+  <td>10.31</td>
+  <td>8,431.93</td>
+  <td>3.16</td>
+</tr>
+<tr>
+  <td>Marketplace</td>
+  <td>2,372.76</td>
+  <td>3.63%</td>
+  <td>5.25%</td>
+  <td>0.05</td>
+  <td>2.67</td>
+  <td>11,017.86</td>
+  <td>4.64</td>
+</tr>
+<tr>
+  <td>原生、横幅和插屏</td>
+  <td>1,881.23</td>
+  <td>2.88%</td>
+  <td>5.65%</td>
+  <td>0.16</td>
+  <td>9.13</td>
+  <td>12,760.06</td>
+  <td>6.78</td>
+</tr>
+<tr>
+  <td>Facebook Reels 内嵌广告</td>
+  <td>1,407.99</td>
+  <td>2.15%</td>
+  <td>2.12%</td>
+  <td>0.12</td>
+  <td>2.44</td>
+  <td>10,393.10</td>
+  <td>7.38</td>
+</tr>
+<tr>
+  <td>Facebook 快拍</td>
+  <td>1,185.29</td>
+  <td>1.81%</td>
+  <td>4.41%</td>
+  <td>0.22</td>
+  <td>9.55</td>
+  <td>5,501.46</td>
+  <td>4.64</td>
+</tr>
+<tr>
+  <td>激励视频</td>
+  <td>959.81</td>
+  <td>1.47%</td>
+  <td>19.11%</td>
+  <td>0.10</td>
+  <td>18.87</td>
+  <td>7,006.78</td>
+  <td>7.30</td>
+</tr>
+<tr>
+  <td>搜索结果</td>
+  <td>677.74</td>
+  <td>1.04%</td>
+  <td>5.33%</td>
+  <td>0.04</td>
+  <td>2.24</td>
+  <td>6,784.23</td>
+  <td>10.01</td>
+</tr>
+</tbody>
+</table></div>
+    </section><section class="module-card" id="sec-7">
+      <div class="module-header">
+        <h2>七、国家分析</h2>
+      </div>
+      <div class="module-content"><h3>1）NEW-IOS 国家分析（消耗Top20）</h3>
+<table class="data-table country-table">
+<thead>
+<tr>
+  <th>国家/地区</th>
+  <th>消耗</th>
+  <th>消耗占比</th>
+  <th>NB</th>
+  <th>CPB</th>
+  <th>NB_Order</th>
+  <th>NB_GMV</th>
+  <th>消耗较昨日</th>
+  <th>消耗较7日均值</th>
+  <th>NB较昨日</th>
+  <th>NB较7日均值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>US</td>
+  <td>7,202.70</td>
+  <td>41.32%</td>
+  <td>55</td>
+  <td>130.96</td>
+  <td>101</td>
+  <td>4,976.37</td>
+  <td>-3.06%</td>
+  <td>18.30%</td>
+  <td>25.00%</td>
+  <td>13.91%</td>
+</tr>
+<tr>
+  <td>UK</td>
+  <td>2,207.39</td>
+  <td>12.66%</td>
+  <td>19</td>
+  <td>116.18</td>
+  <td>50</td>
+  <td>2,048.50</td>
+  <td>-6.40%</td>
+  <td>28.23%</td>
+  <td>-17.39%</td>
+  <td>-10.74%</td>
+</tr>
+<tr>
+  <td>FR</td>
+  <td>1,756.06</td>
+  <td>10.07%</td>
+  <td>16</td>
+  <td>109.75</td>
+  <td>33</td>
+  <td>1,912.66</td>
+  <td>1.43%</td>
+  <td>24.77%</td>
+  <td>128.57%</td>
+  <td>80.65%</td>
+</tr>
+<tr>
+  <td>IT</td>
+  <td>934.37</td>
+  <td>5.36%</td>
+  <td>3</td>
+  <td>311.46</td>
+  <td>3</td>
+  <td>155.46</td>
+  <td>-6.25%</td>
+  <td>17.41%</td>
+  <td>-57.14%</td>
+  <td>-40.00%</td>
+</tr>
+<tr>
+  <td>ES</td>
+  <td>905.37</td>
+  <td>5.19%</td>
+  <td>4</td>
+  <td>226.34</td>
+  <td>7</td>
+  <td>281.10</td>
+  <td>-4.48%</td>
+  <td>28.45%</td>
+  <td>33.33%</td>
+  <td>16.67%</td>
+</tr>
+<tr>
+  <td>CA</td>
+  <td>823.15</td>
+  <td>4.72%</td>
+  <td>2</td>
+  <td>411.58</td>
+  <td>3</td>
+  <td>87.00</td>
+  <td>-0.23%</td>
+  <td>13.13%</td>
+  <td>-71.43%</td>
+  <td>-57.58%</td>
+</tr>
+<tr>
+  <td>DE</td>
+  <td>780.12</td>
+  <td>4.48%</td>
+  <td>6</td>
+  <td>130.02</td>
+  <td>8</td>
+  <td>396.60</td>
+  <td>-7.27%</td>
+  <td>24.67%</td>
+  <td>20.00%</td>
+  <td>75.00%</td>
+</tr>
+<tr>
+  <td>AU</td>
+  <td>457.80</td>
+  <td>2.63%</td>
+  <td>3</td>
+  <td>152.60</td>
+  <td>5</td>
+  <td>128.21</td>
+  <td>-22.44%</td>
+  <td>5.57%</td>
+  <td>200.00%</td>
+  <td>0.00%</td>
+</tr>
+<tr>
+  <td>ZA</td>
+  <td>297.13</td>
+  <td>1.70%</td>
+  <td>0</td>
+  <td>-</td>
+  <td>0</td>
+  <td>0.00</td>
+  <td>1.37%</td>
+  <td>24.27%</td>
+  <td>-100.00%</td>
+  <td>-100.00%</td>
+</tr>
+<tr>
+  <td>PR</td>
+  <td>271.24</td>
+  <td>1.56%</td>
+  <td>0</td>
+  <td>-</td>
+  <td>0</td>
+  <td>0.00</td>
+  <td>13.17%</td>
+  <td>17.48%</td>
+  <td>-</td>
+  <td>-100.00%</td>
+</tr>
+<tr>
+  <td>NL</td>
+  <td>263.09</td>
+  <td>1.51%</td>
+  <td>1</td>
+  <td>263.09</td>
+  <td>1</td>
+  <td>90.33</td>
+  <td>-10.49%</td>
+  <td>27.48%</td>
+  <td>-</td>
+  <td>-53.33%</td>
+</tr>
+<tr>
+  <td>MX</td>
+  <td>243.68</td>
+  <td>1.40%</td>
+  <td>3</td>
+  <td>81.23</td>
+  <td>3</td>
+  <td>115.00</td>
+  <td>-7.56%</td>
+  <td>6.31%</td>
+  <td>50.00%</td>
+  <td>23.53%</td>
+</tr>
+<tr>
+  <td>BE</td>
+  <td>217.63</td>
+  <td>1.25%</td>
+  <td>1</td>
+  <td>217.63</td>
+  <td>1</td>
+  <td>13.65</td>
+  <td>-0.81%</td>
+  <td>26.08%</td>
+  <td>-</td>
+  <td>16.67%</td>
+</tr>
+<tr>
+  <td>SE</td>
+  <td>175.99</td>
+  <td>1.01%</td>
+  <td>1</td>
+  <td>175.99</td>
+  <td>1</td>
+  <td>45.71</td>
+  <td>0.90%</td>
+  <td>42.27%</td>
+  <td>-50.00%</td>
+  <td>0.00%</td>
+</tr>
+<tr>
+  <td>PL</td>
+  <td>132.89</td>
+  <td>0.76%</td>
+  <td>2</td>
+  <td>66.44</td>
+  <td>4</td>
+  <td>115.97</td>
+  <td>-22.06%</td>
+  <td>28.14%</td>
+  <td>100.00%</td>
+  <td>600.00%</td>
+</tr>
+<tr>
+  <td>SA</td>
+  <td>113.37</td>
+  <td>0.65%</td>
+  <td>1</td>
+  <td>113.37</td>
+  <td>2</td>
+  <td>66.34</td>
+  <td>-10.42%</td>
+  <td>-5.92%</td>
+  <td>-50.00%</td>
+  <td>0.00%</td>
+</tr>
+<tr>
+  <td>AE</td>
+  <td>113.05</td>
+  <td>0.65%</td>
+  <td>1</td>
+  <td>113.05</td>
+  <td>4</td>
+  <td>232.54</td>
+  <td>-16.99%</td>
+  <td>5.78%</td>
+  <td>-</td>
+  <td>133.33%</td>
+</tr>
+<tr>
+  <td>CH</td>
+  <td>103.16</td>
+  <td>0.59%</td>
+  <td>0</td>
+  <td>-</td>
+  <td>0</td>
+  <td>0.00</td>
+  <td>-7.44%</td>
+  <td>19.54%</td>
+  <td>-100.00%</td>
+  <td>-100.00%</td>
+</tr>
+<tr>
+  <td>IE</td>
+  <td>74.96</td>
+  <td>0.43%</td>
+  <td>0</td>
+  <td>-</td>
+  <td>0</td>
+  <td>0.00</td>
+  <td>-11.07%</td>
+  <td>24.79%</td>
+  <td>-</td>
+  <td>-100.00%</td>
+</tr>
+<tr>
+  <td>AT</td>
+  <td>69.90</td>
+  <td>0.40%</td>
+  <td>0</td>
+  <td>-</td>
+  <td>0</td>
+  <td>0.00</td>
+  <td>-6.10%</td>
+  <td>16.00%</td>
+  <td>-</td>
+  <td>-100.00%</td>
+</tr>
+</tbody>
+</table>
+<h3>2）NEW-Android 国家分析（消耗Top20）</h3>
+<table>
+<thead>
+<tr>
+  <th>国家/地区</th>
+  <th>消耗</th>
+  <th>消耗占比</th>
+  <th>NB</th>
+  <th>CPB</th>
+  <th>NB_Order</th>
+  <th>NB_GMV</th>
+  <th>消耗较昨日</th>
+  <th>消耗较7日均值</th>
+  <th>NB较昨日</th>
+  <th>NB较7日均值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>US</td>
+  <td>3,076.12</td>
+  <td>33.16%</td>
+  <td>37</td>
+  <td>83.14</td>
+  <td>47</td>
+  <td>2,658.91</td>
+  <td>-5.72%</td>
+  <td>6.93%</td>
+  <td>37.04%</td>
+  <td>56.97%</td>
+</tr>
+<tr>
+  <td>UK</td>
+  <td>2,495.20</td>
+  <td>26.90%</td>
+  <td>35</td>
+  <td>71.29</td>
+  <td>61</td>
+  <td>2,235.04</td>
+  <td>-16.52%</td>
+  <td>15.66%</td>
+  <td>9.38%</td>
+  <td>17.79%</td>
+</tr>
+<tr>
+  <td>FR</td>
+  <td>853.52</td>
+  <td>9.20%</td>
+  <td>13</td>
+  <td>65.66</td>
+  <td>18</td>
+  <td>1,192.84</td>
+  <td>-12.02%</td>
+  <td>10.46%</td>
+  <td>30.00%</td>
+  <td>82.00%</td>
+</tr>
+<tr>
+  <td>CA</td>
+  <td>388.44</td>
+  <td>4.19%</td>
+  <td>3</td>
+  <td>129.48</td>
+  <td>9</td>
+  <td>357.47</td>
+  <td>-9.18%</td>
+  <td>-10.14%</td>
+  <td>50.00%</td>
+  <td>-8.70%</td>
+</tr>
+<tr>
+  <td>IT</td>
+  <td>380.83</td>
+  <td>4.10%</td>
+  <td>5</td>
+  <td>76.17</td>
+  <td>6</td>
+  <td>316.29</td>
+  <td>-11.88%</td>
+  <td>2.05%</td>
+  <td>150.00%</td>
+  <td>169.23%</td>
+</tr>
+<tr>
+  <td>AU</td>
+  <td>376.52</td>
+  <td>4.06%</td>
+  <td>5</td>
+  <td>75.30</td>
+  <td>9</td>
+  <td>345.03</td>
+  <td>-14.75%</td>
+  <td>1.02%</td>
+  <td>150.00%</td>
+  <td>45.83%</td>
+</tr>
+<tr>
+  <td>DE</td>
+  <td>376.21</td>
+  <td>4.06%</td>
+  <td>1</td>
+  <td>376.21</td>
+  <td>1</td>
+  <td>39.11</td>
+  <td>-11.66%</td>
+  <td>8.70%</td>
+  <td>-75.00%</td>
+  <td>-58.82%</td>
+</tr>
+<tr>
+  <td>SA</td>
+  <td>206.04</td>
+  <td>2.22%</td>
+  <td>2</td>
+  <td>103.02</td>
+  <td>2</td>
+  <td>54.71</td>
+  <td>-5.12%</td>
+  <td>2.84%</td>
+  <td>-</td>
+  <td>180.00%</td>
+</tr>
+<tr>
+  <td>ES</td>
+  <td>146.49</td>
+  <td>1.58%</td>
+  <td>3</td>
+  <td>48.83</td>
+  <td>8</td>
+  <td>451.62</td>
+  <td>-5.68%</td>
+  <td>3.21%</td>
+  <td>0.00%</td>
+  <td>50.00%</td>
+</tr>
+<tr>
+  <td>MX</td>
+  <td>108.52</td>
+  <td>1.17%</td>
+  <td>1</td>
+  <td>108.52</td>
+  <td>2</td>
+  <td>40.26</td>
+  <td>-22.20%</td>
+  <td>-25.79%</td>
+  <td>0.00%</td>
+  <td>16.67%</td>
+</tr>
+<tr>
+  <td>ZA</td>
+  <td>89.68</td>
+  <td>0.97%</td>
+  <td>1</td>
+  <td>89.68</td>
+  <td>1</td>
+  <td>78.36</td>
+  <td>-17.01%</td>
+  <td>14.89%</td>
+  <td>0.00%</td>
+  <td>75.00%</td>
+</tr>
+<tr>
+  <td>HU</td>
+  <td>77.44</td>
+  <td>0.83%</td>
+  <td>2</td>
+  <td>38.72</td>
+  <td>3</td>
+  <td>260.59</td>
+  <td>-12.95%</td>
+  <td>9.32%</td>
+  <td>-</td>
+  <td>150.00%</td>
+</tr>
+<tr>
+  <td>RO</td>
+  <td>61.91</td>
+  <td>0.67%</td>
+  <td>0</td>
+  <td>-</td>
+  <td>0</td>
+  <td>0.00</td>
+  <td>-19.63%</td>
+  <td>-0.03%</td>
+  <td>-</td>
+  <td>-100.00%</td>
+</tr>
+<tr>
+  <td>NL</td>
+  <td>59.23</td>
+  <td>0.64%</td>
+  <td>2</td>
+  <td>29.62</td>
+  <td>2</td>
+  <td>90.94</td>
+  <td>-25.35%</td>
+  <td>56.62%</td>
+  <td>-33.33%</td>
+  <td>16.67%</td>
+</tr>
+<tr>
+  <td>PL</td>
+  <td>54.70</td>
+  <td>0.59%</td>
+  <td>2</td>
+  <td>27.35</td>
+  <td>2</td>
+  <td>345.19</td>
+  <td>-22.01%</td>
+  <td>67.90%</td>
+  <td>100.00%</td>
+  <td>250.00%</td>
+</tr>
+<tr>
+  <td>CZ</td>
+  <td>53.53</td>
+  <td>0.58%</td>
+  <td>0</td>
+  <td>-</td>
+  <td>0</td>
+  <td>0.00</td>
+  <td>-6.86%</td>
+  <td>5.67%</td>
+  <td>-</td>
+  <td>-100.00%</td>
+</tr>
+<tr>
+  <td>IE</td>
+  <td>52.17</td>
+  <td>0.56%</td>
+  <td>1</td>
+  <td>52.17</td>
+  <td>1</td>
+  <td>40.03</td>
+  <td>-16.95%</td>
+  <td>19.73%</td>
+  <td>-</td>
+  <td>75.00%</td>
+</tr>
+<tr>
+  <td>AE</td>
+  <td>45.34</td>
+  <td>0.49%</td>
+  <td>0</td>
+  <td>-</td>
+  <td>0</td>
+  <td>0.00</td>
+  <td>-14.23%</td>
+  <td>1.80%</td>
+  <td>-</td>
+  <td>-100.00%</td>
+</tr>
+<tr>
+  <td>NZ</td>
+  <td>40.32</td>
+  <td>0.43%</td>
+  <td>2</td>
+  <td>20.16</td>
+  <td>2</td>
+  <td>142.81</td>
+  <td>-8.59%</td>
+  <td>37.73%</td>
+  <td>100.00%</td>
+  <td>600.00%</td>
+</tr>
+<tr>
+  <td>BE</td>
+  <td>38.01</td>
+  <td>0.41%</td>
+  <td>0</td>
+  <td>-</td>
+  <td>0</td>
+  <td>0.00</td>
+  <td>-12.86%</td>
+  <td>53.79%</td>
+  <td>-100.00%</td>
+  <td>-100.00%</td>
+</tr>
+</tbody>
+</table>
+<h3>3）RMKT-IOS 国家分析（消耗Top20）</h3>
+<table>
+<thead>
+<tr>
+  <th>国家/地区</th>
+  <th>消耗</th>
+  <th>消耗占比</th>
+  <th>AB</th>
+  <th>Order</th>
+  <th>GMV</th>
+  <th>ROI</th>
+  <th>AOV</th>
+  <th>消耗较昨日</th>
+  <th>消耗较7日均值</th>
+  <th>GMV较昨日</th>
+  <th>GMV较7日均值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>US</td>
+  <td>14,510.78</td>
+  <td>67.38%</td>
+  <td>2,113</td>
+  <td>3,827</td>
+  <td>198,972.19</td>
+  <td>13.71</td>
+  <td>51.99</td>
+  <td>1.64%</td>
+  <td>20.35%</td>
+  <td>29.12%</td>
+  <td>13.67%</td>
+</tr>
+<tr>
+  <td>UK</td>
+  <td>2,976.83</td>
+  <td>13.82%</td>
+  <td>870</td>
+  <td>1,494</td>
+  <td>54,824.01</td>
+  <td>18.42</td>
+  <td>36.70</td>
+  <td>-5.86%</td>
+  <td>25.51%</td>
+  <td>-0.32%</td>
+  <td>2.76%</td>
+</tr>
+<tr>
+  <td>FR</td>
+  <td>1,000.24</td>
+  <td>4.64%</td>
+  <td>176</td>
+  <td>258</td>
+  <td>13,868.04</td>
+  <td>13.86</td>
+  <td>53.75</td>
+  <td>-5.34%</td>
+  <td>22.14%</td>
+  <td>19.79%</td>
+  <td>-18.92%</td>
+</tr>
+<tr>
+  <td>CA</td>
+  <td>790.49</td>
+  <td>3.67%</td>
+  <td>194</td>
+  <td>334</td>
+  <td>12,946.11</td>
+  <td>16.38</td>
+  <td>38.76</td>
+  <td>1.34%</td>
+  <td>21.04%</td>
+  <td>4.18%</td>
+  <td>2.62%</td>
+</tr>
+<tr>
+  <td>AU</td>
+  <td>436.60</td>
+  <td>2.03%</td>
+  <td>105</td>
+  <td>187</td>
+  <td>9,538.14</td>
+  <td>21.85</td>
+  <td>51.01</td>
+  <td>-10.50%</td>
+  <td>22.45%</td>
+  <td>16.38%</td>
+  <td>33.51%</td>
+</tr>
+<tr>
+  <td>DE</td>
+  <td>291.02</td>
+  <td>1.35%</td>
+  <td>73</td>
+  <td>123</td>
+  <td>6,687.95</td>
+  <td>22.98</td>
+  <td>54.37</td>
+  <td>0.66%</td>
+  <td>26.23%</td>
+  <td>64.83%</td>
+  <td>16.48%</td>
+</tr>
+<tr>
+  <td>IT</td>
+  <td>221.03</td>
+  <td>1.03%</td>
+  <td>73</td>
+  <td>117</td>
+  <td>6,062.74</td>
+  <td>27.43</td>
+  <td>51.82</td>
+  <td>-5.39%</td>
+  <td>17.32%</td>
+  <td>-12.72%</td>
+  <td>-26.01%</td>
+</tr>
+<tr>
+  <td>ES</td>
+  <td>206.90</td>
+  <td>0.96%</td>
+  <td>87</td>
+  <td>135</td>
+  <td>9,777.83</td>
+  <td>47.26</td>
+  <td>72.43</td>
+  <td>-7.33%</td>
+  <td>19.62%</td>
+  <td>54.53%</td>
+  <td>26.84%</td>
+</tr>
+<tr>
+  <td>NL</td>
+  <td>177.10</td>
+  <td>0.82%</td>
+  <td>71</td>
+  <td>130</td>
+  <td>7,763.50</td>
+  <td>43.84</td>
+  <td>59.72</td>
+  <td>-5.73%</td>
+  <td>12.83%</td>
+  <td>7.32%</td>
+  <td>21.77%</td>
+</tr>
+<tr>
+  <td>MX</td>
+  <td>172.87</td>
+  <td>0.80%</td>
+  <td>29</td>
+  <td>46</td>
+  <td>2,930.59</td>
+  <td>16.95</td>
+  <td>63.71</td>
+  <td>-10.16%</td>
+  <td>7.76%</td>
+  <td>-14.18%</td>
+  <td>6.26%</td>
+</tr>
+<tr>
+  <td>CH</td>
+  <td>102.23</td>
+  <td>0.47%</td>
+  <td>25</td>
+  <td>49</td>
+  <td>2,137.73</td>
+  <td>20.91</td>
+  <td>43.63</td>
+  <td>-1.59%</td>
+  <td>18.55%</td>
+  <td>-41.38%</td>
+  <td>-37.19%</td>
+</tr>
+<tr>
+  <td>IE</td>
+  <td>69.91</td>
+  <td>0.32%</td>
+  <td>19</td>
+  <td>32</td>
+  <td>2,079.16</td>
+  <td>29.74</td>
+  <td>64.97</td>
+  <td>-12.49%</td>
+  <td>-1.01%</td>
+  <td>7.11%</td>
+  <td>17.50%</td>
+</tr>
+<tr>
+  <td>PR</td>
+  <td>52.84</td>
+  <td>0.25%</td>
+  <td>7</td>
+  <td>16</td>
+  <td>549.69</td>
+  <td>10.40</td>
+  <td>34.36</td>
+  <td>-9.51%</td>
+  <td>-1.29%</td>
+  <td>-62.74%</td>
+  <td>-68.13%</td>
+</tr>
+<tr>
+  <td>BE</td>
+  <td>51.80</td>
+  <td>0.24%</td>
+  <td>22</td>
+  <td>39</td>
+  <td>2,238.38</td>
+  <td>43.21</td>
+  <td>57.39</td>
+  <td>-6.49%</td>
+  <td>19.34%</td>
+  <td>142.80%</td>
+  <td>65.09%</td>
+</tr>
+<tr>
+  <td>RO</td>
+  <td>49.36</td>
+  <td>0.23%</td>
+  <td>3</td>
+  <td>3</td>
+  <td>167.82</td>
+  <td>3.40</td>
+  <td>55.94</td>
+  <td>-4.63%</td>
+  <td>33.45%</td>
+  <td>-79.83%</td>
+  <td>-57.82%</td>
+</tr>
+<tr>
+  <td>NZ</td>
+  <td>39.67</td>
+  <td>0.18%</td>
+  <td>8</td>
+  <td>13</td>
+  <td>617.84</td>
+  <td>15.58</td>
+  <td>47.53</td>
+  <td>-8.23%</td>
+  <td>30.85%</td>
+  <td>12.97%</td>
+  <td>7.90%</td>
+</tr>
+<tr>
+  <td>HU</td>
+  <td>37.04</td>
+  <td>0.17%</td>
+  <td>8</td>
+  <td>11</td>
+  <td>3,431.55</td>
+  <td>92.66</td>
+  <td>311.96</td>
+  <td>-1.24%</td>
+  <td>23.90%</td>
+  <td>909.78%</td>
+  <td>617.42%</td>
+</tr>
+<tr>
+  <td>NO</td>
+  <td>37.00</td>
+  <td>0.17%</td>
+  <td>24</td>
+  <td>43</td>
+  <td>1,658.51</td>
+  <td>44.83</td>
+  <td>38.57</td>
+  <td>-11.79%</td>
+  <td>0.28%</td>
+  <td>206.76%</td>
+  <td>43.58%</td>
+</tr>
+<tr>
+  <td>SE</td>
+  <td>34.30</td>
+  <td>0.16%</td>
+  <td>15</td>
+  <td>22</td>
+  <td>3,509.19</td>
+  <td>102.31</td>
+  <td>159.51</td>
+  <td>7.38%</td>
+  <td>24.16%</td>
+  <td>61.45%</td>
+  <td>72.05%</td>
+</tr>
+<tr>
+  <td>AE</td>
+  <td>27.29</td>
+  <td>0.13%</td>
+  <td>8</td>
+  <td>18</td>
+  <td>799.18</td>
+  <td>29.28</td>
+  <td>44.40</td>
+  <td>-1.41%</td>
+  <td>26.59%</td>
+  <td>-0.04%</td>
+  <td>87.65%</td>
+</tr>
+</tbody>
+</table>
+<h3>4）RMKT-Android 国家分析（消耗Top20）</h3>
+<table>
+<thead>
+<tr>
+  <th>国家/地区</th>
+  <th>消耗</th>
+  <th>消耗占比</th>
+  <th>AB</th>
+  <th>Order</th>
+  <th>GMV</th>
+  <th>ROI</th>
+  <th>AOV</th>
+  <th>消耗较昨日</th>
+  <th>消耗较7日均值</th>
+  <th>GMV较昨日</th>
+  <th>GMV较7日均值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>US</td>
+  <td>5,756.21</td>
+  <td>44.05%</td>
+  <td>474</td>
+  <td>737</td>
+  <td>38,901.69</td>
+  <td>6.76</td>
+  <td>52.78</td>
+  <td>4.26%</td>
+  <td>18.94%</td>
+  <td>5.20%</td>
+  <td>-5.86%</td>
+</tr>
+<tr>
+  <td>UK</td>
+  <td>3,247.41</td>
+  <td>24.85%</td>
+  <td>470</td>
+  <td>699</td>
+  <td>23,809.78</td>
+  <td>7.33</td>
+  <td>34.06</td>
+  <td>-10.77%</td>
+  <td>19.83%</td>
+  <td>-5.14%</td>
+  <td>2.21%</td>
+</tr>
+<tr>
+  <td>FR</td>
+  <td>1,111.79</td>
+  <td>8.51%</td>
+  <td>96</td>
+  <td>134</td>
+  <td>6,865.51</td>
+  <td>6.18</td>
+  <td>51.24</td>
+  <td>-5.92%</td>
+  <td>17.18%</td>
+  <td>-0.67%</td>
+  <td>2.97%</td>
+</tr>
+<tr>
+  <td>ES</td>
+  <td>519.10</td>
+  <td>3.97%</td>
+  <td>68</td>
+  <td>97</td>
+  <td>4,656.98</td>
+  <td>8.97</td>
+  <td>48.01</td>
+  <td>-10.04%</td>
+  <td>14.52%</td>
+  <td>8.28%</td>
+  <td>17.21%</td>
+</tr>
+<tr>
+  <td>CA</td>
+  <td>467.76</td>
+  <td>3.58%</td>
+  <td>52</td>
+  <td>85</td>
+  <td>3,044.28</td>
+  <td>6.51</td>
+  <td>35.82</td>
+  <td>0.04%</td>
+  <td>15.97%</td>
+  <td>-17.38%</td>
+  <td>-29.00%</td>
+</tr>
+<tr>
+  <td>IT</td>
+  <td>342.25</td>
+  <td>2.62%</td>
+  <td>47</td>
+  <td>80</td>
+  <td>4,698.29</td>
+  <td>13.73</td>
+  <td>58.73</td>
+  <td>-7.33%</td>
+  <td>10.12%</td>
+  <td>70.46%</td>
+  <td>53.36%</td>
+</tr>
+<tr>
+  <td>DE</td>
+  <td>285.41</td>
+  <td>2.18%</td>
+  <td>22</td>
+  <td>31</td>
+  <td>2,486.61</td>
+  <td>8.71</td>
+  <td>80.21</td>
+  <td>-15.89%</td>
+  <td>16.14%</td>
+  <td>18.31%</td>
+  <td>42.53%</td>
+</tr>
+<tr>
+  <td>AU</td>
+  <td>251.63</td>
+  <td>1.93%</td>
+  <td>31</td>
+  <td>61</td>
+  <td>2,250.71</td>
+  <td>8.94</td>
+  <td>36.90</td>
+  <td>-16.81%</td>
+  <td>5.47%</td>
+  <td>-35.91%</td>
+  <td>23.05%</td>
+</tr>
+<tr>
+  <td>NL</td>
+  <td>195.62</td>
+  <td>1.50%</td>
+  <td>24</td>
+  <td>37</td>
+  <td>2,057.89</td>
+  <td>10.52</td>
+  <td>55.62</td>
+  <td>-10.85%</td>
+  <td>19.64%</td>
+  <td>-4.32%</td>
+  <td>2.72%</td>
+</tr>
+<tr>
+  <td>MX</td>
+  <td>117.43</td>
+  <td>0.90%</td>
+  <td>9</td>
+  <td>15</td>
+  <td>776.72</td>
+  <td>6.61</td>
+  <td>51.78</td>
+  <td>-8.59%</td>
+  <td>-5.27%</td>
+  <td>6.58%</td>
+  <td>3.39%</td>
+</tr>
+<tr>
+  <td>IE</td>
+  <td>88.86</td>
+  <td>0.68%</td>
+  <td>9</td>
+  <td>10</td>
+  <td>446.86</td>
+  <td>5.03</td>
+  <td>44.69</td>
+  <td>-14.44%</td>
+  <td>10.48%</td>
+  <td>52.87%</td>
+  <td>-25.46%</td>
+</tr>
+<tr>
+  <td>BE</td>
+  <td>87.31</td>
+  <td>0.67%</td>
+  <td>8</td>
+  <td>11</td>
+  <td>431.88</td>
+  <td>4.95</td>
+  <td>39.26</td>
+  <td>-17.53%</td>
+  <td>-1.62%</td>
+  <td>43.65%</td>
+  <td>-43.63%</td>
+</tr>
+<tr>
+  <td>CH</td>
+  <td>85.20</td>
+  <td>0.65%</td>
+  <td>11</td>
+  <td>29</td>
+  <td>1,202.40</td>
+  <td>14.11</td>
+  <td>41.46</td>
+  <td>-20.53%</td>
+  <td>23.83%</td>
+  <td>85.26%</td>
+  <td>106.64%</td>
+</tr>
+<tr>
+  <td>PL</td>
+  <td>60.73</td>
+  <td>0.46%</td>
+  <td>9</td>
+  <td>9</td>
+  <td>1,608.41</td>
+  <td>26.48</td>
+  <td>178.71</td>
+  <td>-3.89%</td>
+  <td>42.37%</td>
+  <td>391.82%</td>
+  <td>58.25%</td>
+</tr>
+<tr>
+  <td>PR</td>
+  <td>46.02</td>
+  <td>0.35%</td>
+  <td>1</td>
+  <td>1</td>
+  <td>47.84</td>
+  <td>1.04</td>
+  <td>47.84</td>
+  <td>16.32%</td>
+  <td>30.89%</td>
+  <td>-81.64%</td>
+  <td>-73.89%</td>
+</tr>
+<tr>
+  <td>BR</td>
+  <td>40.45</td>
+  <td>0.31%</td>
+  <td>11</td>
+  <td>13</td>
+  <td>454.82</td>
+  <td>11.24</td>
+  <td>34.99</td>
+  <td>-7.76%</td>
+  <td>15.75%</td>
+  <td>24.02%</td>
+  <td>17.26%</td>
+</tr>
+<tr>
+  <td>NO</td>
+  <td>40.09</td>
+  <td>0.31%</td>
+  <td>5</td>
+  <td>7</td>
+  <td>378.55</td>
+  <td>9.44</td>
+  <td>54.08</td>
+  <td>0.55%</td>
+  <td>7.57%</td>
+  <td>1495.24%</td>
+  <td>86.77%</td>
+</tr>
+<tr>
+  <td>RO</td>
+  <td>39.28</td>
+  <td>0.30%</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0.00</td>
+  <td>0.00</td>
+  <td>-</td>
+  <td>-10.44%</td>
+  <td>-5.97%</td>
+  <td>-</td>
+  <td>-100.00%</td>
+</tr>
+<tr>
+  <td>CL</td>
+  <td>38.73</td>
+  <td>0.30%</td>
+  <td>3</td>
+  <td>4</td>
+  <td>147.81</td>
+  <td>3.82</td>
+  <td>36.95</td>
+  <td>12.09%</td>
+  <td>50.16%</td>
+  <td>-4.63%</td>
+  <td>137.19%</td>
+</tr>
+<tr>
+  <td>NZ</td>
+  <td>26.79</td>
+  <td>0.20%</td>
+  <td>9</td>
+  <td>17</td>
+  <td>669.87</td>
+  <td>25.01</td>
+  <td>39.40</td>
+  <td>-11.59%</td>
+  <td>13.18%</td>
+  <td>328.22%</td>
+  <td>71.71%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>重点国家解读：</strong></p>
+<ul>
+<li><strong>IOS 拉新</strong>：US 为最大拉新消耗国家（消耗 <strong>7,202.70</strong>，NB <strong>55</strong>）；UK 在高消耗国家中 CPB 更优（<strong>116.18</strong>）。</li>
+<li><strong>Android 拉新</strong>：UK / US 是主要消耗国家，UK 当前 NB <strong>35</strong>，CPB <strong>71.29</strong>。</li>
+<li><strong>IOS 再营销</strong>：US / UK 为核心回收国家，US GMV <strong>198,972.19</strong>，UK ROI <strong>18.42</strong>。</li>
+<li><strong>Android 再营销</strong>：US / UK 仍是主回收国家，其中 UK ROI <strong>7.33</strong>，可持续观察其回收稳定性。</li>
+</ul></div>
+    </section><section class="module-card" id="sec-8">
+      <div class="module-header">
+        <h2>八、近期行业资讯</h2>
+      </div>
+      <div class="module-content"><h3>1）投放动态</h3>
+<ul class="news-list">
+<li><strong>2026-07-05｜Meta 推出 Pocket 创意应用</strong>：AI 可根据文本提示生成互动式“gizmos”，可作为创意测试与素材生产的新入口。<a href="https://www.socialmediatoday.com/news/meta-launches-pocket-creative-app/824424/">原文链接</a></li>
+<li><strong>2026-06-30｜TikTok 上线 Agentic Hub</strong>：平台把第三方 AI 广告工具集中接入，并直接连到其 Model Context Protocol server，广告自动化链路进一步前置。<a href="https://www.socialmediatoday.com/news/tiktok-launches-agentic-hub/824169/">原文链接</a></li>
+<li><strong>2026-06-30｜Walmart 收购 Vibe.co 强化零售媒体 + CTV</strong>：面向中小广告主的自助式流媒体投放能力增强，零售媒体与品牌广告预算进一步融合。<a href="https://www.retaildive.com/news/walmart-vibeco-deal-ctv-retail-media-convergence/824065/">原文链接</a></li>
+</ul>
+<h3>2）市场动态</h3>
+<ul class="news-list">
+<li><strong>2026-07-02｜Target Plus 扩充品牌与类目</strong>：Target 邀请制 marketplace 新增 Forever 21、Clarks 等品牌，并继续加码 K-beauty，说明平台仍在放大第三方品牌机会。<a href="https://www.retaildive.com/news/target-grows-marketplace-forever-21-clarks-beauty-brand-additions/824336/">原文链接</a></li>
+<li><strong>2026-07-02｜USPS 推进端到端物流可视化</strong>：美国邮政拟通过蓝牙设备识别高价值包裹的履约瓶颈，跨境卖家对物流透明度的要求继续上升。<a href="https://www.supplychaindive.com/news/usps-chief-wants-agency-to-improve-end-to-end-shipping-visibility/824353/">原文链接</a></li>
+<li><strong>2026-07-01｜美国推动 USMCA 进入年度审查流程</strong>：美墨加贸易协定虽继续有效至至少 2036 年，但后续调整谈判将增加北美区域经营的不确定性。<a href="https://www.supplychaindive.com/news/us-blocks-quick-usmca-extension-putting-annual-review-process-into-motion/823820/">原文链接</a></li>
+<li><strong>2026-06-30｜CBP 扩大关税退款入口覆盖范围</strong>：已支持等待最终税额核算的报关单申请退款，相关进口成本回收路径有所放宽。<a href="https://www.supplychaindive.com/news/cbp-launches-first-of-2-tariff-refund-expansions/824121/">原文链接</a></li>
+</ul></div>
+    </section>
+    </div>
+  </main>
+</body>
+</html>
